@@ -1,0 +1,24 @@
+connection:
+    dsn: root:root@/test
+    engine: mysql
+scrub:
+  tables:
+    users:
+      columns:
+        email:
+          generate: person.email
+          referenced_by:
+            - email_queue.email_address
+            - emails_sent.email_address
+        email_address_2:
+          pattern: test{{id}}@cushon.co.uk
+        first_name:
+          generate: person.firstName
+          encrypt:
+            algo: AES
+            key: 
+        last_name:
+          generate: person.surname
+          encrypt:
+            algo: AES
+            key: 
